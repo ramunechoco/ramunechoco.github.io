@@ -1,0 +1,19 @@
+title: "Aporia Harian"
+description: "Catatan pribadi tentang beragam hal"
+baseurl: ""
+url: "https://ramunechoco.github.io"
+
+markdown: kramdown
+kramdown:
+  input: GFM
+
+permalink: /aporia-harian/:year/:month/:day/:title/
+
+plugins:
+  - jekyll-redirect-from
+
+exclude:
+  - README.md
+  - docs/
+  - Gemfile
+  - Gemfile.lock

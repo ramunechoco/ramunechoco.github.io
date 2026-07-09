@@ -1,0 +1,17 @@
+---
+layout: default
+title: Beranda
+redirect_from:
+  - /
+---
+<ul class="post-list">
+  {% for post in site.posts %}
+  <li>
+    <span class="post-date">{{ post.date | date: "%B %d, %Y" }}</span>
+    <div class="post-info">
+      <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+      {% if post.subtitle %}<p class="post-list-subtitle">{{ post.subtitle }}</p>{% endif %}
+    </div>
+  </li>
+  {% endfor %}
+</ul>

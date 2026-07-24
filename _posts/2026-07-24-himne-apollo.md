@@ -2,7 +2,7 @@
 layout: post
 title: "Himne Orfik Apollo"
 subtitle: "Doa pujaan pribadi"
-date: 2026-07-08
+date: 2026-07-24
 ---
 Datanglah, wahai yang bertuah, Paian sang penyembuh, pembunuh Tityos,<br>
 Sang Cerlang dari Likoreia, penghuni Memfis, gemilang kehormatannya,<br>

@@ -18,7 +18,7 @@ berambut emas, yang menyingkapkan sabda murni dan ramalan:
 
 dengarkanlah aku yang memohon demi umat manusia, dengan hati yang berkenan.
 
-Sebab engkaulah yang memandang seluruh atsir yang tiada bertepi,<br>
+Sebab engkaulah yang memandang seluruh akasa yang tiada bertepi,<br>
 dan bumi yang bertuah nasibnya dari atas sana; dan menembus pekat<br>
 kesunyian malam, di bawah kegelapan bermata bintang,<br>
 engkau menatap akar-akar di kedalaman; pada tanganmu batas-batas<br>

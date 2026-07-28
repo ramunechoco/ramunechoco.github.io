@@ -18,20 +18,20 @@ berambut emas, yang menyingkapkan sabda murni dan ramalan:
 
 dengarkanlah aku yang memohon demi umat manusia, dengan hati yang berkenan.
 
-Sebab engkaulah yang memandang seluruh akasa yang tiada bertepi,<br>
+Sebab Engkaulah yang memandang suralaya yang tiada bertepi,<br>
 dan bumi yang bertuah nasibnya dari atas sana; dan menembus pekat<br>
 kesunyian malam, di bawah kegelapan bermata bintang,<br>
-engkau menatap akar-akar di kedalaman; pada tanganmu batas-batas<br>
+Engkau menatap akar-akar di kedalaman; pada tanganmu batas-batas<br>
 segenap alam: awal dan akhir menjadi urusanmu,<br>
 wahai yang menumbuhkan mekar pada segala.
 
-&nbsp;&nbsp;&nbsp;&nbsp;Seluruh poros langit kauselaraskan dengan kitara yang banyak petikannya:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Seluruh poros langit Engkau selaraskan dengan kecapi yang banyak petikannya:<br>
 sesekali melangkah ke ujung dawai *nete*,<br>
 sesekali kembali ke *hypate*, sesekali ke laras Doria,<br>
-seluruh poros kauramu, dan kaubedakan jenis-jenis makhluk yang menyangga kehidupan,<br>
-setelah kaularutkan dalam keselarasan suratan semesta bagi manusia;<br>
-kaucampurkan musim dingin dan musim panas dalam takaran yang setara bagi keduanya,<br>
-musim dingin kaupisahkan ke dawai *hypate*, musim panas ke *nete*,<br>
+seluruh poros Engkau genggam, dan Engkau bedakan jenis-jenis makhluk yang menyangga kehidupan,<br>
+setelah Engkau larutkan dalam keselarasan suratan semesta bagi manusia;<br>
+Engkau campurkan musim dingin dan musim panas dalam takaran yang setara bagi keduanya,<br>
+musim dingin Engkau pisahkan ke dawai *hypate*, musim panas ke *nete*,<br>
 dan laras Doria bagi bunga musim semi yang amat dirindukan.
 
 Dari sanalah manusia fana menyebutmu dengan gelar penguasa:<br>

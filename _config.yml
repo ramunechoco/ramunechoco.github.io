@@ -7,7 +7,7 @@ markdown: kramdown
 kramdown:
   input: GFM
 
-permalink: /aporia-harian/:year/:month/:day/:title/
+permalink: /blog/:year/:month/:day/:title/
 
 plugins:
   - jekyll-redirect-from

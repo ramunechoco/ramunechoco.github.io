@@ -1,4 +1,4 @@
-# Aporia Harian
+# Aksara Aporia
 
 A personal blog, built with [Jekyll](https://jekyllrb.com/) and hosted on [GitHub Pages](https://pages.github.com/).
 

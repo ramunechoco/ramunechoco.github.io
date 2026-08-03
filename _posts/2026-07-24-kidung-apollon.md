@@ -3,6 +3,8 @@ layout: post
 title: "Kidung Orfik Apollon"
 subtitle: "Doa pujaan pribadi"
 date: 2026-07-24
+redirect_from:
+  - /aporia-harian/2026/07/24/kidung-apollon/
 ---
 Datanglah, wahai yang bertuah, Paian sang penyembuh, pembunuh Tityos,<br>
 &nbsp;&nbsp;&nbsp;&nbsp;Sang Cerlang dari Likoreia,<br>

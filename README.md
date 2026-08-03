@@ -1,4 +1,4 @@
-# Aporia Harian
+# Aporia Ananta
 
 A personal blog, built with [Jekyll](https://jekyllrb.com/) and hosted on [GitHub Pages](https://pages.github.com/).
 
@@ -11,7 +11,7 @@ _config.yml               site settings (title, description, URL, permalink, plu
 CNAME                     custom domain, managed by GitHub Pages — don't hand-edit
 _layouts/                 page templates (default.html, post.html)
 _includes/                header/footer snippets
-_posts/                   blog posts (one .md file per post), served under /aporia-harian/
+_posts/                   blog posts (one .md file per post), served under /blog/
 blog/index.html           the blog homepage (lists all posts)
 assets/css/               stylesheet
 assets/js/                footnote popup behavior

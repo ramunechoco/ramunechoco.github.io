@@ -1,4 +1,4 @@
-title: "Aporia Harian"
+title: "Aporia Ananta"
 description: "Tafakur dan lain sebagainya"
 baseurl: ""
 url: "https://kothar.me"
@@ -7,7 +7,7 @@ markdown: kramdown
 kramdown:
   input: GFM
 
-permalink: /aporia-harian/:year/:month/:day/:title/
+permalink: /blog/:year/:month/:day/:title/
 
 plugins:
   - jekyll-redirect-from
@@ -17,3 +17,4 @@ exclude:
   - docs/
   - Gemfile
   - Gemfile.lock
+

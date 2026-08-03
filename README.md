@@ -12,7 +12,7 @@ CNAME                     custom domain, managed by GitHub Pages — don't hand-
 _layouts/                 page templates (default.html, post.html)
 _includes/                header/footer snippets
 _posts/                   blog posts (one .md file per post), served under /aporia-harian/
-aporia-harian/index.html  the blog homepage (lists all posts)
+blog/index.html           the blog homepage (lists all posts)
 assets/css/               stylesheet
 assets/js/                footnote popup behavior
 assets/images/            images used in posts

@@ -78,6 +78,18 @@
     });
   }
 
+  function requestRetry(url, attempts) {
+    attempts = attempts || 3;
+    return request(url).catch(function (e) {
+      if (attempts <= 1) throw e;
+      return new Promise(function (resolve) {
+        setTimeout(resolve, 1000);
+      }).then(function () {
+        return requestRetry(url, attempts - 1);
+      });
+    });
+  }
+
   function renderLocations(list) {
     var previous = el.location.value;
     el.location.innerHTML = "";
@@ -124,7 +136,7 @@
     var url = ENDPOINT + "?action=count&location_id=" + encodeURIComponent(locationId) +
               "&date=" + encodeURIComponent(date);
 
-    request(url).then(function (data) {
+    requestRetry(url).then(function (data) {
       if (token !== countToken) return;
       setCount(data.total_hikers);
     }).catch(function (e) {
@@ -200,26 +212,25 @@
     if (cached) {
       renderLocations(cached);
       showApp();
-      refreshCount();
     }
 
-    request(ENDPOINT + "?action=bootstrap").then(function (data) {
+    requestRetry(ENDPOINT + "?action=bootstrap").then(function (data) {
       var list = data.locations || [];
       if (!list.length) throw new Error("Belum ada lokasi yang tersedia.");
       writeCache(list);
       clearNotice();
-      var changed = !cached || JSON.stringify(cached) !== JSON.stringify(list);
-      if (changed) {
+      if (!cached || JSON.stringify(cached) !== JSON.stringify(list)) {
         renderLocations(list);
-        showApp();
-        refreshCount();
       }
+      showApp();
     }).catch(function (e) {
       if (cached) {
         showNotice("Daftar lokasi mungkin belum yang terbaru. Sambungan ke server sedang bermasalah.");
       } else {
         showFatal("Gagal memuat daftar lokasi. Periksa koneksi Anda lalu muat ulang halaman.");
       }
+    }).then(function () {
+      if (!el.app.hidden) refreshCount();
     });
   }
 

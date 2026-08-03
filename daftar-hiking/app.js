@@ -2,14 +2,13 @@
   "use strict";
 
   var ENDPOINT = "https://script.google.com/macros/s/AKfycbxVDJRDkdEFP1lXYsXdlUrMVWAIQzIk75Ql31RKt3mJVkPgoXKq2lHkgMNlS2hizr5L/exec";
-  var CACHE_KEY = "daftar-hiking:locations:v1";
   var TZ = "Asia/Jakarta";
+  var DEBOUNCE_MS = 300;
 
   var el = {
     app: document.getElementById("app"),
     loading: document.getElementById("loading"),
     fatal: document.getElementById("fatal"),
-    notice: document.getElementById("notice"),
     location: document.getElementById("location"),
     date: document.getElementById("date"),
     countNum: document.getElementById("count-num"),
@@ -23,11 +22,16 @@
     submit: document.getElementById("submit")
   };
 
+  var counts = {};
+  var countsToken = 0;
+  var dateTimer = null;
+
   function jakartaToday() {
     return new Intl.DateTimeFormat("en-CA", {
       timeZone: TZ, year: "numeric", month: "2-digit", day: "2-digit"
     }).format(new Date());
   }
+
   function plusOneYear(iso) {
     var p = iso.split("-");
     return (Number(p[0]) + 1) + "-" + p[1] + "-" + p[2];
@@ -49,19 +53,12 @@
     el.app.hidden = true;
   }
 
-  function showNotice(text) {
-    el.notice.textContent = text;
-    el.notice.hidden = false;
-  }
-
-  function clearNotice() {
-    el.notice.hidden = true;
-  }
   function showMsg(text, kind) {
     el.msg.textContent = text;
     el.msg.className = "msg " + kind;
     el.msg.hidden = false;
   }
+
   function clearMsg() {
     el.msg.hidden = true;
   }
@@ -91,58 +88,12 @@
   }
 
   function renderLocations(list) {
-    var previous = el.location.value;
     el.location.innerHTML = "";
     list.forEach(function (loc) {
       var opt = document.createElement("option");
       opt.value = String(loc.id);
       opt.textContent = loc.name;
       el.location.appendChild(opt);
-    });
-    if (previous && list.some(function (l) { return String(l.id) === previous; })) {
-      el.location.value = previous;
-    }
-  }
-
-  function readCache() {
-    try {
-      var raw = localStorage.getItem(CACHE_KEY);
-      if (!raw) return null;
-      var parsed = JSON.parse(raw);
-      return Array.isArray(parsed) && parsed.length ? parsed : null;
-    } catch (e) {
-      return null;
-    }
-  }
-  function writeCache(list) {
-    try {
-      localStorage.setItem(CACHE_KEY, JSON.stringify(list));
-    } catch (e) { }
-  }
-
-  var countToken = 0;
-
-  function refreshCount() {
-    var locationId = el.location.value;
-    var date = el.date.value;
-    if (!locationId || !date) {
-      el.countNum.textContent = "—";
-      return;
-    }
-    var token = ++countToken;
-    el.countNum.textContent = "…";
-    el.countLbl.textContent = "menghitung…";
-
-    var url = ENDPOINT + "?action=count&location_id=" + encodeURIComponent(locationId) +
-              "&date=" + encodeURIComponent(date);
-
-    requestRetry(url).then(function (data) {
-      if (token !== countToken) return;
-      setCount(data.total_hikers);
-    }).catch(function (e) {
-      if (token !== countToken) return;
-      el.countNum.textContent = "—";
-      el.countLbl.textContent = "gagal memuat jumlah pendaki";
     });
   }
 
@@ -152,6 +103,39 @@
     el.countLbl.textContent = n === 0
       ? "belum ada pendaki terdaftar"
       : "pendaki terdaftar pada tanggal ini";
+  }
+
+  function renderCount() {
+    var id = el.location.value;
+    if (!id) {
+      el.countNum.textContent = "—";
+      el.countLbl.textContent = "pendaki terdaftar";
+      return;
+    }
+    setCount(counts[id]);
+  }
+
+  function pending() {
+    el.countNum.textContent = "…";
+    el.countLbl.textContent = "menghitung…";
+  }
+
+  function loadCounts() {
+    var date = el.date.value;
+    if (!date) return;
+    var token = ++countsToken;
+    pending();
+    return requestRetry(ENDPOINT + "?action=counts&date=" + encodeURIComponent(date))
+      .then(function (data) {
+        if (token !== countsToken) return;
+        counts = data.counts || {};
+        renderCount();
+      })
+      .catch(function (e) {
+        if (token !== countsToken) return;
+        el.countNum.textContent = "—";
+        el.countLbl.textContent = e.message || "gagal memuat jumlah pendaki";
+      });
   }
 
   function submit(event) {
@@ -185,8 +169,9 @@
         phone: phone
       })
     }).then(function (data) {
-      countToken++;
-      setCount(data.total_hikers);
+      countsToken++;
+      counts = data.counts || {};
+      renderCount();
       el.form.reset();
       el.party.value = "1";
       showMsg("Pendaftaran berhasil. Selamat mendaki!", "ok");
@@ -204,34 +189,32 @@
     el.date.max = plusOneYear(today);
     el.date.value = today;
 
-    el.location.addEventListener("change", function () { clearMsg(); refreshCount(); });
-    el.date.addEventListener("change", function () { clearMsg(); refreshCount(); });
+    el.location.addEventListener("change", function () {
+      clearMsg();
+      renderCount();
+    });
+
+    el.date.addEventListener("change", function () {
+      clearMsg();
+      pending();
+      if (dateTimer) clearTimeout(dateTimer);
+      dateTimer = setTimeout(loadCounts, DEBOUNCE_MS);
+    });
+
     el.form.addEventListener("submit", submit);
 
-    var cached = readCache();
-    if (cached) {
-      renderLocations(cached);
-      showApp();
-    }
-
-    requestRetry(ENDPOINT + "?action=bootstrap").then(function (data) {
-      var list = data.locations || [];
-      if (!list.length) throw new Error("Belum ada lokasi yang tersedia.");
-      writeCache(list);
-      clearNotice();
-      if (!cached || JSON.stringify(cached) !== JSON.stringify(list)) {
+    requestRetry(ENDPOINT + "?action=init&date=" + encodeURIComponent(today))
+      .then(function (data) {
+        var list = data.locations || [];
+        if (!list.length) throw new Error("Belum ada lokasi yang tersedia.");
         renderLocations(list);
-      }
-      showApp();
-    }).catch(function (e) {
-      if (cached) {
-        showNotice("Daftar lokasi mungkin belum yang terbaru. Sambungan ke server sedang bermasalah.");
-      } else {
-        showFatal("Gagal memuat daftar lokasi. Periksa koneksi Anda lalu muat ulang halaman.");
-      }
-    }).then(function () {
-      if (!el.app.hidden) refreshCount();
-    });
+        counts = data.counts || {};
+        showApp();
+        renderCount();
+      })
+      .catch(function (e) {
+        showFatal("Gagal memuat halaman. Periksa koneksi Anda lalu muat ulang halaman.");
+      });
   }
 
   start();

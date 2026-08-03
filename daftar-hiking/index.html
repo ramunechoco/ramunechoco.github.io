@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Daftar Hiking</title>
+<script src="app.js" defer></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <h1>Daftar Hiking</h1>
+  <p class="lede">Pilih gunung dan tanggal untuk melihat berapa orang yang sudah mendaftar, lalu daftarkan diri Anda.</p>
+
+  <div id="fatal" class="msg error" hidden></div>
+
+  <div id="app" hidden>
+    <div class="field">
+      <label for="location">Lokasi</label>
+      <select id="location"></select>
+    </div>
+
+    <div class="field">
+      <label for="date">Tanggal pendakian</label>
+      <input type="date" id="date">
+    </div>
+
+    <div id="count">
+      <span class="num" id="count-num">&mdash;</span>
+      <span class="lbl" id="count-lbl">pendaki terdaftar</span>
+    </div>
+
+    <hr>
+
+    <h2>Formulir pendaftaran</h2>
+
+    <div id="msg" class="msg" hidden></div>
+
+    <form id="form" novalidate>
+      <fieldset id="fields">
+        <div class="field">
+          <label for="name">Nama</label>
+          <input type="text" id="name" maxlength="100" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="party">Jumlah pendaki <span class="hint">(termasuk Anda)</span></label>
+          <input type="number" id="party" value="1" min="1" max="200" step="1" inputmode="numeric" required>
+        </div>
+        <div class="field">
+          <label for="phone">Nomor HP <span class="hint">(opsional)</span></label>
+          <input type="tel" id="phone" maxlength="30" autocomplete="tel">
+        </div>
+        <button type="submit" id="submit">Daftar</button>
+      </fieldset>
+    </form>
+  </div>
+</main>
+
+</body>
+</html>

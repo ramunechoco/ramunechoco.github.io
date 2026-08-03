@@ -1,13 +1,15 @@
 (function () {
   "use strict";
 
-  var ENDPOINT = "https://script.google.com/macros/s/AKfycbw3xzwLfU3bV9QX6YD-QKDXm_8STc47sC7uu5CJ1z_mmDHlewlaWqR5fGuR0oPabwDTrQ/exec";
+  var ENDPOINT = "https://script.google.com/macros/s/AKfycbxVDJRDkdEFP1lXYsXdlUrMVWAIQzIk75Ql31RKt3mJVkPgoXKq2lHkgMNlS2hizr5L/exec";
   var CACHE_KEY = "daftar-hiking:locations:v1";
   var TZ = "Asia/Jakarta";
 
   var el = {
     app: document.getElementById("app"),
+    loading: document.getElementById("loading"),
     fatal: document.getElementById("fatal"),
+    notice: document.getElementById("notice"),
     location: document.getElementById("location"),
     date: document.getElementById("date"),
     countNum: document.getElementById("count-num"),
@@ -31,10 +33,29 @@
     return (Number(p[0]) + 1) + "-" + p[1] + "-" + p[2];
   }
 
+  function hideLoading() {
+    el.loading.hidden = true;
+  }
+
+  function showApp() {
+    hideLoading();
+    el.app.hidden = false;
+  }
+
   function showFatal(text) {
+    hideLoading();
     el.fatal.textContent = text;
     el.fatal.hidden = false;
     el.app.hidden = true;
+  }
+
+  function showNotice(text) {
+    el.notice.textContent = text;
+    el.notice.hidden = false;
+  }
+
+  function clearNotice() {
+    el.notice.hidden = true;
   }
   function showMsg(text, kind) {
     el.msg.textContent = text;
@@ -178,7 +199,7 @@
     var cached = readCache();
     if (cached) {
       renderLocations(cached);
-      el.app.hidden = false;
+      showApp();
       refreshCount();
     }
 
@@ -186,14 +207,17 @@
       var list = data.locations || [];
       if (!list.length) throw new Error("Belum ada lokasi yang tersedia.");
       writeCache(list);
+      clearNotice();
       var changed = !cached || JSON.stringify(cached) !== JSON.stringify(list);
       if (changed) {
         renderLocations(list);
-        el.app.hidden = false;
+        showApp();
         refreshCount();
       }
     }).catch(function (e) {
-      if (!cached) {
+      if (cached) {
+        showNotice("Daftar lokasi mungkin belum yang terbaru. Sambungan ke server sedang bermasalah.");
+      } else {
         showFatal("Gagal memuat daftar lokasi. Periksa koneksi Anda lalu muat ulang halaman.");
       }
     });

@@ -13,7 +13,14 @@
   <h1>Daftar Hiking</h1>
   <p class="lede">Pilih gunung dan tanggal untuk melihat berapa orang yang sudah mendaftar, lalu daftarkan diri Anda.</p>
 
+  <div id="loading">
+    <span class="spinner" aria-hidden="true"></span>
+    <span>Memuat daftar lokasi&hellip;</span>
+  </div>
+
   <div id="fatal" class="msg error" hidden></div>
+
+  <div id="notice" class="msg warn" hidden></div>
 
   <div id="app" hidden>
     <div class="field">

@@ -299,3 +299,68 @@ main.wrap {
 .site-footer .wrap {
   padding-top: 20px;
 }
+
+.post-meta-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.post-lang {
+  margin: 0;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+.post-lang .lang-current {
+  color: var(--indigo);
+  font-weight: 700;
+}
+
+.post-lang .lang-link {
+  color: var(--gold);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.post-lang .lang-link:hover {
+  border-bottom-color: var(--gold);
+}
+
+.post-lang .lang-off {
+  color: var(--stone);
+  cursor: default;
+}
+
+.post-lang .lang-sep {
+  margin: 0 6px;
+  color: var(--stone);
+}
+
+.post-lang-tag {
+  margin-left: auto;
+  align-self: center;
+  flex-shrink: 0;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 1px 6px;
+}
+
+.post-lang-tag .post-lang-sep {
+  margin: 0 4px;
+  color: var(--stone);
+}
+
+.post-lang-tag .post-lang-alt {
+  color: var(--gold);
+  text-decoration: none;
+}
+
+.post-lang-tag .post-lang-alt:hover {
+  text-decoration: underline;
+}

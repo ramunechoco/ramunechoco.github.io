@@ -1,10 +1,35 @@
 ---
 layout: default
 ---
+{% assign post_lang = page.lang | default: 'id' %}
+{% assign sibling = nil %}
+{% if page.translation_key %}
+  {% assign candidates = site.posts | where: "translation_key", page.translation_key %}
+  {% for candidate in candidates %}
+    {% assign candidate_lang = candidate.lang | default: 'id' %}
+    {% if candidate_lang != post_lang %}
+      {% assign sibling = candidate %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
 <article class="post">
   <h1 class="post-title">{{ page.title }}</h1>
   {% if page.subtitle %}<p class="post-subtitle">{{ page.subtitle }}</p>{% endif %}
-  <p class="post-meta">{{ page.date | date: "%B %d, %Y" }}</p>
+  <div class="post-meta-row">
+    <p class="post-meta">{{ page.date | date: "%B %d, %Y" }}</p>
+    <p class="post-lang">
+      {% if post_lang == 'id' %}
+        <span class="lang-current" aria-current="true">ID</span>
+        <span class="lang-sep" aria-hidden="true">|</span>
+        {% if sibling %}<a class="lang-link" href="{{ sibling.url | relative_url }}">EN</a>{% else %}<span class="lang-off" title="No English version yet">EN</span>{% endif %}
+      {% else %}
+        {% if sibling %}<a class="lang-link" href="{{ sibling.url | relative_url }}">ID</a>{% else %}<span class="lang-off" title="Belum ada versi Indonesia">ID</span>{% endif %}
+        <span class="lang-sep" aria-hidden="true">|</span>
+        <span class="lang-current" aria-current="true">EN</span>
+      {% endif %}
+    </p>
+  </div>
   <div class="ornament-divider post-divider" aria-hidden="true"></div>
   <div class="post-content">
     {{ content }}

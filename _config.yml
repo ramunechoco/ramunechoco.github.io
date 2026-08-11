@@ -9,6 +9,13 @@ kramdown:
 
 permalink: /blog/:year/:month/:day/:title/
 
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      lang: id
+
 plugins:
   - jekyll-redirect-from
 
@@ -17,4 +24,3 @@ exclude:
   - docs/
   - Gemfile
   - Gemfile.lock
-

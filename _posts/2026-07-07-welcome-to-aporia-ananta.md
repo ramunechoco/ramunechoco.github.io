@@ -1,11 +1,13 @@
 ---
 layout: post
-title: "Welcome to Aporia Harian"
+title: "Welcome to Aporia Ananta"
 subtitle: "A first note on how this blog works"
 date: 2026-07-07
+lang: en
+translation_key: welcome
 ---
 
-This is the first post on **Aporia Harian**. Posts here are plain Markdown files, so formatting is simple:
+This is the first post on **Aporia Ananta**. Posts here are plain Markdown files, so formatting is simple:
 
 - Wrap text in `**double asterisks**` for **bold**.
 - Wrap text in `*single asterisks*` for *italics*.

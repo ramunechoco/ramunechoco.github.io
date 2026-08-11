@@ -5,14 +5,34 @@ redirect_from:
   - /
   - /aporia-harian/
 ---
-<ul class="post-list">
+<ul class="post-list" id="post-list">
   {% for post in site.posts %}
-  <li>
+    {% assign post_lang = post.lang | default: 'id' %}
+    {% assign alt = nil %}
+    {% if post.translation_key %}
+      {% assign candidates = site.posts | where: "translation_key", post.translation_key %}
+      {% for candidate in candidates %}
+        {% assign candidate_lang = candidate.lang | default: 'id' %}
+        {% if candidate_lang != post_lang %}
+          {% assign alt = candidate %}
+          {% break %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+    {% assign alt_lang = alt.lang | default: 'id' %}
+    {% assign skip = false %}
+    {% if alt and alt_lang == 'en' and post_lang != 'en' %}
+      {% assign skip = true %}
+    {% endif %}
+    {% unless skip %}
+  <li data-lang="{{ post_lang }}">
     <span class="post-date">{{ post.date | date: "%B %d, %Y" }}</span>
     <div class="post-info">
       <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title }}</a>
       {% if post.subtitle %}<p class="post-list-subtitle">{{ post.subtitle }}</p>{% endif %}
     </div>
+    <span class="post-lang-tag">{{ post_lang | upcase }}{% if alt %}<span class="post-lang-sep" aria-hidden="true">·</span><a class="post-lang-alt" href="{{ alt.url | relative_url }}">{{ alt_lang | upcase }}</a>{% endif %}</span>
   </li>
+    {% endunless %}
   {% endfor %}
 </ul>

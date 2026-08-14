@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Welcome to Aporia Ananta"
-subtitle: "A first note on how this blog works"
+subtitle: "Simple feature checks"
 date: 2026-07-07
 lang: en
 translation_key: welcome

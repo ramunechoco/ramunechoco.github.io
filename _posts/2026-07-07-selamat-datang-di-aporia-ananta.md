@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Selamat datang di Aporia Ananta"
-subtitle: "Catatan awal ihwal cara kerja blog ini"
+subtitle: "Untuk cek fitur, file placeholder"
 date: 2026-07-07
 lang: id
 translation_key: welcome

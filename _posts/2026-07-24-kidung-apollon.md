@@ -5,7 +5,11 @@ subtitle: "Doa pujaan pribadi"
 date: 2026-07-24
 redirect_from:
   - /aporia-harian/2026/07/24/kidung-apollon/
+lang: id
+translation_key: apollon
 ---
+**Untuk Apollon — dupa: manna**[^1]
+
 Datanglah, wahai yang bertuah, Paian sang penyembuh, pembunuh Tityos,<br>
 &nbsp;&nbsp;&nbsp;&nbsp;Sang Cerlang dari Likoreia,<br>
 penghuni Memfis, gemilang kehormatannya, yang diseru dengan pekik *ie*, pelimpah tuah;<br>
@@ -41,3 +45,5 @@ Pan, dewa bertanduk dua, yang melepaskan siulan angin,<br>
 sebab padamulah meterai penera seluruh alam.
 
 Dengarlah, wahai yang bertuah, selamatkanlah para salik yang menyeru dengan suara memohon.
+
+[^1]: Disadur dari [hellenicgods.org](https://www.hellenicgods.org/the-orphic-hymn-to-apollo)

@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "Orphic Hymn of Apollo"
+title: "Orphic hymn of Apollo"
 subtitle: "For personal devotional purpose"
 date: 2026-07-24
 redirect_from:
-  - /aporia-harian/2026/07/24/kidung-apollon/
+  - /blog/2026/07/24/hymn-of-apollo/
 lang: en
 translation_key: apollon
 ---

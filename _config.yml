@@ -7,7 +7,7 @@ markdown: kramdown
 kramdown:
   input: GFM
 
-permalink: /blog/:year/:month/:day/:title/
+permalink: /blog/:title/
 
 defaults:
   - scope:

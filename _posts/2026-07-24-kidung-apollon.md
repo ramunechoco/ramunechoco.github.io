@@ -5,6 +5,7 @@ subtitle: "Doa pujaan pribadi"
 date: 2026-07-24
 redirect_from:
   - /aporia-harian/2026/07/24/kidung-apollon/
+  - /blog/2026/07/24/kidung-apollon/
 lang: id
 translation_key: apollon
 ---
